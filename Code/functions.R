@@ -214,6 +214,7 @@ save_stationarity_table <- function(results, caption_prefix, table_folder, data_
 
 # VIX ---------------------------------------------------------------------
 
+# Align VIX with the returns data
 prepare_vix <- function(vix_raw, returns, spline_interp_func = spline_interp) {
   message("Preparing VIX data...")
   
@@ -451,7 +452,7 @@ fit_garch_models <- function(returns, price_columns,
   return(list(fits = garch_fits, residuals = std_residuals))
 }
 
-
+# Diagnistics for residuals, autocorr.
 check_residual_diagnostics <- function(std_residuals) {
   message("Running Ljung–Box tests on standardized residuals...")
   
@@ -562,6 +563,8 @@ save_ks_test_table <- function(ks_test_results, data_type, table_folder) {
 
 
 # Pseudo-observations -----------------------------------------------------
+
+# Empirical CDF on columns
 pit <- function(df){
   # calculate ecdf(value = stand. residuals)
   cols <- colnames(df)
@@ -636,7 +639,6 @@ save_rvine_tree_plot <- function(vine_object, tree = 1, type, col,
 }
 
 # Structurised Summary 
-
 vine_trees_summary <- function(summary_df) {
   df <- as.data.frame(summary_df)
   df <- df[, c("tree", "edge", "cop", "family", "par", "par2", "tau", "utd", "ltd")]
@@ -653,6 +655,7 @@ vine_trees_summary <- function(summary_df) {
   return(tree_list)
 }
 
+# Save summaries for different trees
 save_vine_tree_tables <- function(vine_model, data_type, model_name, table_folder, 
                                   trees_to_export = 1, digits = 3, tree_to_print = NULL) {
   # Compute the summary and clean it
@@ -696,6 +699,7 @@ compare_tree_dependence <- function(vine1, vine2, tree = 1) {
 
 # Information Criteria -----------------------------------------------------
 
+# IC
 compute_ic_values <- function(u, u_regime1, u_regime2,
                               model_single, model_regime1, model_regime2,
                               model_cvine, regimes, returns) {
@@ -791,6 +795,7 @@ save_vuong_table <- function(vuong_result, table_path, caption = "Vuong Test for
 
 # Rolling Vines -----------------------------------------------------------
 
+# Estimate rolling r vines
 rolling_rvines <- function(returns, rolling_window, step_size, u=NULL, 
                            compute_u = FALSE, armaorder = NULL, 
                            garchorder = c(1, 1), special_banks = NULL, 
@@ -872,6 +877,7 @@ plot_roll_rvine <- function(roll_rvines, indices, plot_folder, data_type, tree =
 
 # Simulations -------------------------------------------------------------
 
+# If some estimations faileed - carry forward the previous results
 carry_forward_results <- function(results_list) {
   null_indices <- which(sapply(results_list, is.null))
   null_count <- length(null_indices)
@@ -905,6 +911,7 @@ carry_forward_results <- function(results_list) {
   }
 }
 
+# Simulate log returns from an rr-vine
 simulated_logret <- function(N, rvine, returns, price_columns, dist_grch,
                              armaorder, garchorder = c(1, 1), special_armaorder, 
                              special_garchorder = c(1, 1), special_banks = NULL, 
@@ -1027,6 +1034,7 @@ simulated_logret <- function(N, rvine, returns, price_columns, dist_grch,
   sim_returns
 }
 
+# Simulate log returns on a rolling basis
 rolling_simulated_logret <- function(rvine, returns, returns_test, price_columns, test_window, rolling_window){
   # Cutting the observations earlier than the first obs. for the rolling window
   returns <- returns %>% dplyr::select(-"regime")
@@ -1044,6 +1052,7 @@ rolling_simulated_logret <- function(rvine, returns, returns_test, price_columns
 
 # HMM ---------------------------------------------------------------------
 
+# Predict one-day-ahead state
 HMM_predict <- function(vix, start_idx = NULL, rolling_window = NULL, rolling = TRUE, seed = 7){
   if (rolling == TRUE){
     # Returns used to estimate GARCH
@@ -1144,6 +1153,7 @@ min_var_weights <- function(sim_returns, alpha) {
               ES_mvar = ES(weights = opt_weights, sim_returns = sim_returns, alpha = alpha)))
 }
 
+# MaxIR objective
 max_ir_weights <- function(sim_returns, alpha) {
   d <- ncol(sim_returns)
   init_weights <- rep(1/d, d)
@@ -1167,7 +1177,7 @@ max_ir_weights <- function(sim_returns, alpha) {
 
 # Backtesting -------------------------------------------------------------
 
-
+# Optimise portfolio weights based on the simulated one-day-ahead returns
 rolling_risk <- function(rvine, returns, returns_test, price_columns, test_window, 
                          rolling_window, N, solver_spec = NULL, seed = 7,
                          dist_grch, armaorder, special_armaorder = NULL, special_banks = NULL,
@@ -1289,6 +1299,7 @@ ifdebug <- function(){
   }
 }
 
+# Estimate weights ... using two models to choose from based on the predicted state
 rolling_risk_regimes <- function(rvine1, rvine2, returns, returns_test, vix, vix_test, 
                                  price_columns, test_window, rolling_window, N, seed = 7, 
                                  fut_states = NULL, dist_grch, armaorder, 
@@ -1371,6 +1382,7 @@ rolling_risk_regimes <- function(rvine1, rvine2, returns, returns_test, vix, vix
   results
 }
 
+# Estimate weights ... using rolling vines
 rolling_risk_rollrvines <- function(rvine_list, returns, returns_test, 
                                     price_columns, test_window, rolling_window, N, seed = 7, 
                                     dist_grch, armaorder, special_armaorder = NULL, special_banks = NULL,
@@ -1454,6 +1466,7 @@ compute_weights_and_risk <- function(sim_returns, alpha = 0.01) {
   )
 }
 
+# normalise weights
 norm_near_zero <- function(col_vector, threshold = 1e-10){
   col_vector <- sapply(col_vector, function(x) ifelse(abs(x) < threshold, 0, x))
   extra_weight <- 1 - sum(col_vector)
@@ -1466,6 +1479,7 @@ norm_near_zero <- function(col_vector, threshold = 1e-10){
 
 # Weights: Visualisations -------------------------------------------------
 
+# Plot weights depending on the strategy
 plot_weights5000 <- function(port_weights_5000, sim_returns, plot_folder, data_type, 
                              show_title = TRUE, 
                              legend_text_size = 12) {
@@ -1516,7 +1530,7 @@ plot_weights5000 <- function(port_weights_5000, sim_returns, plot_folder, data_t
   weights_plot
 }
 
-
+# VaR barchart
 plot_var5000 <- function(var_5000, plot_folder, data_type, 
                          show_title = TRUE,
                          legend_text_size = 12) {
@@ -1606,6 +1620,7 @@ qqplot_u <- function(bank, vine_model, seed = 7){
 }
 
 # CoVaR -------------------------------------------------------------------
+# Compute simulated CoVaR from a vine modelxs
 CoVaRcompute <- function(vine_model, price_columns, n_sim = 5e4, alpha = 0.05, eps = 0.005, seed = 7) {
   d <- ncol(u)
   
@@ -1678,6 +1693,7 @@ CoVaRlogret <- function(CoVaRmatrix, std_residuals, garch_fits){
   CoVaR_logret
 }
 
+# Plot delta CoVaR
 CoVaRplot <- function(CoVaR_matrix, subt = NULL, lower_limit = NULL, show_title = T, 
                       legend_text_size = 12){
   
@@ -1709,6 +1725,7 @@ CoVaRplot <- function(CoVaR_matrix, subt = NULL, lower_limit = NULL, show_title 
       axis.text.x = element_text(angle = 45, hjust = 1))
 }
 
+# Plot delta in delta CoVaR
 CoVaR_Delta_in_Delta <- function(CoVaR_matrix, lower_limit = NULL, 
                                  show_title = T, 
                                  legend_text_size = 12){
@@ -1739,6 +1756,7 @@ CoVaR_Delta_in_Delta <- function(CoVaR_matrix, lower_limit = NULL,
       axis.text.x = element_text(angle = 45, hjust = 1))
 }
 
+# Save a CoVaR-based plot
 save_covar_plot <- function(covar_data, title, filename, folder, lower_limit = NULL, width = 8, 
                             height = 5, dpi = 200, deltaindelta = FALSE, 
                             show_title = TRUE, 
@@ -1791,6 +1809,7 @@ CoVaR_table_summary <- function(CoVaR_matrix, CoVaR_matrix_logr){
 
 # Standard Correlation Techniques -----------------------------------------
 
+# Quad programming for weights based on correlation
 minvar_corr <- function(start_idx, returns, price_columns, rolling_window = NULL, rolling = T){
   if (rolling == TRUE){
     data <- returns[start_idx:(start_idx + rolling_window - 1), price_columns]
@@ -1813,6 +1832,7 @@ minvar_corr <- function(start_idx, returns, price_columns, rolling_window = NULL
   result$solution
 }
 
+# Rolling-window optimisation using correlations
 minvar_corr_rolling <- function(returns, returns_test, rolling_window, 
                                 price_columns, test_window){
   # Cutting the observations earlier than the first obs. for the rolling window
@@ -1831,6 +1851,7 @@ minvar_corr_rolling <- function(returns, returns_test, rolling_window,
 
 # Big Summary -------------------------------------------------------------
 
+# Store VaR and ES
 var_es_backtest_table <- function(roll_dataframe, var = NULL, es = NULL){
   if (!is.null(var) && var ==TRUE){
     data.frame(Date = returns_backtest$Date, 
@@ -1845,6 +1866,7 @@ var_es_backtest_table <- function(roll_dataframe, var = NULL, es = NULL){
   }
 }
 
+# Store weights
 weights_backtest <- function(returns_backtest, roll_risk, roll_risk_regimes, 
                              roll_risk_rollvines, roll_risk_cvine, roll_minvar_corr) {
   
@@ -1886,6 +1908,7 @@ weights_backtest <- function(returns_backtest, roll_risk, roll_risk_regimes,
 
 # VaR Tests ---------------------------------------------------------------
 
+# Run UC and CC tests
 run_vartests <- function(portfolio_returns, var_estimates, alpha = 0.01) {
   mapply(function(actual_ret, var_series) {
     VaRTest(alpha = alpha, actual = actual_ret, VaR = var_series)
@@ -1915,6 +1938,7 @@ run_durtest <- function(test_obj) {
 
 # Ploting -----------------------------------------------------------------
 
+# Cumulative returns for subset of strategies
 plot_cumulative_returns <- function(df, strategy_subset, filename_prefix, title = NULL, subtitle = NULL, 
                                     show_title = TRUE, legend_text_size = 12, legend.position = "right") {
   # Get labels and colors that match the final factor levels
@@ -1959,6 +1983,7 @@ plot_cumulative_returns <- function(df, strategy_subset, filename_prefix, title 
   p
 }
 
+# Plot VaR and ES for EW and all models
 plot_var_es <- function(
     df_single, df_roll, df_regimes, df_cvine, portfolio_ret, 
     measure = c("VaR", "ES"), ylims = c(-0.1, 0.08),
@@ -2038,7 +2063,7 @@ plot_var_es <- function(
   p
 }
 
-
+# Plot VaR & ES for one MVaR strategy
 plot_mvar_var_es <- function(
     VaR_df, ES_df, portfolio_ret, portfolio_name, strategy_name, 
     var_color, es_color, plot_folder, data_type, ylims = c(-0.1, 0.08),
@@ -2126,7 +2151,7 @@ plot_mvar_var_es <- function(
   p
 }
 
-
+# Plot VaR & ES for one IR strategy
 plot_ir_var_es <- function(
     VaR_df, ES_df, portfolio_ret, portfolio_name, strategy_name, 
     var_color, es_color, plot_folder, data_type, ylims = c(-0.1, 0.08),
@@ -2215,5 +2240,5 @@ plot_ir_var_es <- function(
   p
 }
 
-
+# Freq of positive returns
 hit_ratio <- function(x) mean(x > 0)
