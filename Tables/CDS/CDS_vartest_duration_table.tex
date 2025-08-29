@@ -1,0 +1,25 @@
+\begin{table}
+
+\caption{Duration VaR Test}
+\centering
+\begin{tabular}[t]{lllrl}
+\toprule
+Strategy & Model & H0 & LRp & decision\\
+\midrule
+Equal Weight & Single & Duration Between Exceedances have no memory (Weibull b=1 = Exponential) & 0.985 & Fail to Reject H0\\
+Equal Weight & Regimes & Duration Between Exceedances have no memory (Weibull b=1 = Exponential) & 0.615 & Fail to Reject H0\\
+Equal Weight & Rolling & Duration Between Exceedances have no memory (Weibull b=1 = Exponential) & 0.325 & Fail to Reject H0\\
+Equal Weight & C-Vine & Duration Between Exceedances have no memory (Weibull b=1 = Exponential) & 0.127 & Fail to Reject H0\\
+Min VaR & Single & Duration Between Exceedances have no memory (Weibull b=1 = Exponential) & 0.034 & Reject H0\\
+\addlinespace
+Min VaR & Regimes & Duration Between Exceedances have no memory (Weibull b=1 = Exponential) & 0.157 & Fail to Reject H0\\
+Min VaR & Rolling & Duration Between Exceedances have no memory (Weibull b=1 = Exponential) & 0.161 & Fail to Reject H0\\
+Min VaR & C-Vine & Duration Between Exceedances have no memory (Weibull b=1 = Exponential) & 0.104 & Fail to Reject H0\\
+Max IR & Single & Duration Between Exceedances have no memory (Weibull b=1 = Exponential) & 0.156 & Fail to Reject H0\\
+Max IR & Regimes & Duration Between Exceedances have no memory (Weibull b=1 = Exponential) & 0.364 & Fail to Reject H0\\
+\addlinespace
+Max IR & Rolling & Duration Between Exceedances have no memory (Weibull b=1 = Exponential) & 0.910 & Fail to Reject H0\\
+Max IR & C-Vine & Duration Between Exceedances have no memory (Weibull b=1 = Exponential) & 0.159 & Fail to Reject H0\\
+\bottomrule
+\end{tabular}
+\end{table}

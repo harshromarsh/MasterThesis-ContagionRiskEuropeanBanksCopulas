@@ -1,0 +1,25 @@
+\begin{table}
+
+\caption{Conditional VaR Test}
+\centering
+\begin{tabular}[t]{lrrlrl}
+\toprule
+  & Expected & Actual & CC\_H0 & P\_value & CC\_Decision\\
+\midrule
+EW, Single & 12 & 4 & Correct Exceedances \& Independent & 0.000 & Reject H0\\
+EW, Regime & 12 & 4 & Correct Exceedances \& Independent & 0.000 & Reject H0\\
+EW, Rolling & 12 & 6 & Correct Exceedances \& Independent & 0.002 & Reject H0\\
+EW, C-Vine & 12 & 4 & Correct Exceedances \& Independent & 0.000 & Reject H0\\
+MVaR, Single & 12 & 6 & Correct Exceedances \& Independent & 0.000 & Reject H0\\
+\addlinespace
+MVaR, Regime & 12 & 7 & Correct Exceedances \& Independent & 0.000 & Reject H0\\
+MVaR, Rolling & 12 & 12 & Correct Exceedances \& Independent & 0.045 & Reject H0\\
+MVaR, C-Vine & 12 & 9 & Correct Exceedances \& Independent & 0.056 & Fail to Reject H0\\
+IR, Single & 12 & 6 & Correct Exceedances \& Independent & 0.002 & Reject H0\\
+IR, Regime & 12 & 6 & Correct Exceedances \& Independent & 0.002 & Reject H0\\
+\addlinespace
+IR, Rolling & 12 & 8 & Correct Exceedances \& Independent & 0.023 & Reject H0\\
+IR, C-Vine & 12 & 5 & Correct Exceedances \& Independent & 0.000 & Reject H0\\
+\bottomrule
+\end{tabular}
+\end{table}

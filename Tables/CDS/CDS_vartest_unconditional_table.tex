@@ -1,0 +1,25 @@
+\begin{table}
+
+\caption{Unconditional VaR Test}
+\centering
+\begin{tabular}[t]{lrrlrl}
+\toprule
+  & Expected & Actual & UC\_H0 & P\_value & UC\_Decision\\
+\midrule
+EW, Single & 5 & 3 & Correct Exceedances & 0.331 & Fail to Reject H0\\
+EW, Regime & 5 & 5 & Correct Exceedances & 1.000 & Fail to Reject H0\\
+EW, Rolling & 5 & 6 & Correct Exceedances & 0.663 & Fail to Reject H0\\
+EW, C-Vine & 5 & 5 & Correct Exceedances & 1.000 & Fail to Reject H0\\
+MVaR, Single & 5 & 20 & Correct Exceedances & 0.000 & Reject H0\\
+\addlinespace
+MVaR, Regime & 5 & 16 & Correct Exceedances & 0.000 & Reject H0\\
+MVaR, Rolling & 5 & 17 & Correct Exceedances & 0.000 & Reject H0\\
+MVaR, C-Vine & 5 & 16 & Correct Exceedances & 0.000 & Reject H0\\
+IR, Single & 5 & 8 & Correct Exceedances & 0.215 & Fail to Reject H0\\
+IR, Regime & 5 & 9 & Correct Exceedances & 0.106 & Fail to Reject H0\\
+\addlinespace
+IR, Rolling & 5 & 10 & Correct Exceedances & 0.048 & Reject H0\\
+IR, C-Vine & 5 & 9 & Correct Exceedances & 0.106 & Fail to Reject H0\\
+\bottomrule
+\end{tabular}
+\end{table}
