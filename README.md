@@ -1,4 +1,4 @@
-# Master-Thesis---Contagion-Risk-in-European-Banks-using-Copulas
+# MasterThesis-ContagionRiskEuropeanBanksCopulas
 Code for the Master Thesis "Contagion Risk in European Banks using Copulas"
 
 The aim of the thesis was to investigate the dependence structure and dynamics
