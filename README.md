@@ -9,7 +9,7 @@ This repository contains the R code and results and is structured in the followi
 
 ```
 ├── Code/
-│ ├── DataRetrieval.R # Retrieve and preprocess stock data (source: )
+│ ├── DataRetrieval.R # Retrieve and preprocess stock data (source: Yahoo Finance via Quantmod)
 │ ├── DataRetrieval_CDS.R # Preprocess CDS data from a sep. Excel (source: Bloomberg)
 │ ├── RVineCopula.R # Estimation of R-vine copulas (stocks)
 │ ├── RVineCopulaCDS.R # Estimation of R-vine copulas (CDS)

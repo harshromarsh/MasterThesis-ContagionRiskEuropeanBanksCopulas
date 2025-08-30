@@ -371,7 +371,7 @@ roll_risk_regimes <- rolling_risk_regimes(rvine1 = rvine_regime1, rvine2 = rvine
                                           dist_grch = "sstd", armaorder = c(1, 1), special_banks = c("RBI", "EBS", "SEB", "DBK"),
                                           special_armaorder = c(2, 2))
 
-roll_risk_regimes_cleaned <- carry_forward_results(roll_risk_regimes) # 167
+roll_risk_regimes_cleaned <- carry_forward_results(roll_risk_regimes) 
 roll_risk_regimes <- roll_risk_regimes_cleaned$cleaned
 
 save(roll_risk_regimes, file = "Saved Results/roll_risk_regimes_cds.RData")
@@ -382,7 +382,7 @@ roll_risk <- rolling_risk(rvine = rvine_single, returns = returns, returns_test 
                           dist_grch = "sstd", armaorder = c(1, 1), special_banks = c("RBI", "EBS", "SEB", "DBK"),
                           special_armaorder = c(2, 2))
 
-roll_risk_cleaned <- carry_forward_results(roll_risk) # 165
+roll_risk_cleaned <- carry_forward_results(roll_risk) 
 roll_risk <- roll_risk_cleaned$cleaned
 
 save(roll_risk, file = "Saved Results/roll_risk_cds.RData")
@@ -403,7 +403,7 @@ roll_risk_rollvines <- rolling_risk_rollrvines(
   dist_grch = "sstd", armaorder = c(1, 1), special_banks = c("RBI", "EBS", "SEB", "DBK"),
   special_armaorder = c(2, 2))
 
-roll_risk_rollvines_cleaned <- carry_forward_results(roll_risk_rollvines) # 165
+roll_risk_rollvines_cleaned <- carry_forward_results(roll_risk_rollvines) 
 roll_risk_rollvines <- roll_risk_rollvines_cleaned$cleaned
 
 save(roll_risk_rollvines, file = "Saved Results/roll_risk_rollvines_cds.RData")
@@ -413,7 +413,7 @@ roll_risk_cvine <- rolling_risk(rvine = cvine_single, returns = returns, returns
                                 dist_grch = "sstd", armaorder = c(1, 1), special_banks = c("RBI", "EBS", "SEB", "DBK"),
                                 special_armaorder = c(2, 2))
 
-roll_risk_cvine_cleaned <- carry_forward_results(roll_risk_cvine) # 165
+roll_risk_cvine_cleaned <- carry_forward_results(roll_risk_cvine) 
 roll_risk_cvine <- roll_risk_cvine_cleaned$cleaned
 
 save(roll_risk_cvine, file = "Saved Results/roll_risk_cvine_cds.RData")
@@ -618,7 +618,8 @@ plot_mvar_var_es(
   plot_folder = plot_folder,
   data_type = data_type, 
   ylims = c(-0.3, 0.1), 
-  font_setting = "regular"
+  font_setting = "regular", 
+  legend.position = "right"
 )
 
 plot_mvar_var_es(
@@ -632,7 +633,8 @@ plot_mvar_var_es(
   plot_folder = plot_folder,
   data_type = data_type,  
   ylims = c(-0.3, 0.1), 
-  font_setting = "regular"
+  font_setting = "regular", 
+  legend.position = "right"
 )
 
 plot_mvar_var_es(
@@ -646,7 +648,8 @@ plot_mvar_var_es(
   plot_folder = plot_folder,
   data_type = data_type, 
   ylims = c(-0.3, 0.1), 
-  font_setting = "regular"
+  font_setting = "regular", 
+  legend.position = "right"
 )
 
 plot_mvar_var_es(
@@ -660,7 +663,8 @@ plot_mvar_var_es(
   plot_folder = plot_folder,
   data_type = data_type,
   ylims = c(-0.3, 0.1), 
-  font_setting = "regular"
+  font_setting = "regular", 
+  legend.position = "right"
 )
 
 # IR Portfolios
@@ -676,7 +680,8 @@ plot_ir_var_es(
   plot_folder = plot_folder,
   data_type = data_type, 
   ylims = c(-0.3, 0.1), 
-  font_setting = "regular"
+  font_setting = "regular", 
+  legend.position = "right"
 )
 
 plot_ir_var_es(
@@ -690,7 +695,8 @@ plot_ir_var_es(
   plot_folder = plot_folder,
   data_type = data_type, 
   ylims = c(-0.3, 0.1), 
-  font_setting = "regular"
+  font_setting = "regular", 
+  legend.position = "right"
 )
 
 plot_ir_var_es(
@@ -704,7 +710,8 @@ plot_ir_var_es(
   plot_folder = plot_folder,
   data_type = data_type, 
   ylims = c(-0.3, 0.1), 
-  font_setting = "regular"
+  font_setting = "regular", 
+  legend.position = "right"
 )
 
 plot_ir_var_es(
@@ -718,7 +725,8 @@ plot_ir_var_es(
   plot_folder = plot_folder,
   data_type = data_type, 
   ylims = c(-0.3, 0.1), 
-  font_setting = "regular"
+  font_setting = "regular", 
+  legend.position = "right"
 )
 
 # Portfolio Performance ---------------------------------------------------

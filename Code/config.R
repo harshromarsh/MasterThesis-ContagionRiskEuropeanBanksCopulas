@@ -40,7 +40,8 @@ strategy_labels <- c(
   mvar_roll = "Min VaR (Rolling RVine)", 
   ir_roll = "Max IR (Rolling RVine)", 
   mvar_cvine = "Min VaR (CVine)",   
-  ir_cvine = "Max IR (CVine)"
+  ir_cvine = "Max IR (CVine)", 
+  minvar_corr = "Min Var (Corr)"
 )
 
 strategy_colors <- c(

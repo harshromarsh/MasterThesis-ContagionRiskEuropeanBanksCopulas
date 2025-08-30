@@ -583,7 +583,8 @@ plot_mvar_var_es(
   var_color = "#FF7F0E",
   es_color = "#FFBC80",
   plot_folder = plot_folder,
-  data_type = data_type
+  data_type = data_type, 
+  legend.position = "right"
 )
 
 plot_mvar_var_es(
@@ -595,7 +596,8 @@ plot_mvar_var_es(
   var_color = "#2CA02C",
   es_color = "#A9DFBF",
   plot_folder = plot_folder,
-  data_type = data_type
+  data_type = data_type, 
+  legend.position = "right"
 )
 
 plot_mvar_var_es(
@@ -607,7 +609,8 @@ plot_mvar_var_es(
   var_color = "#8C564B",
   es_color = "#D7B8AE",
   plot_folder = plot_folder,
-  data_type = data_type
+  data_type = data_type, 
+  legend.position = "right"
 )
 
 plot_mvar_var_es(
@@ -619,7 +622,8 @@ plot_mvar_var_es(
   var_color = "#17BECF",
   es_color = "#BFEFF4",
   plot_folder = plot_folder,
-  data_type = data_type
+  data_type = data_type, 
+  legend.position = "right"
 )
 
 # IR Portfolios
@@ -633,7 +637,8 @@ plot_ir_var_es(
   var_color = "#D62728",
   es_color = "#F4A6A6",
   plot_folder = plot_folder,
-  data_type = data_type
+  data_type = data_type, 
+  legend.position = "right"
 )
 
 plot_ir_var_es(
@@ -645,7 +650,8 @@ plot_ir_var_es(
   var_color = "#9467BD",
   es_color = "#D4B9DA",
   plot_folder = plot_folder,
-  data_type = data_type
+  data_type = data_type, 
+  legend.position = "right"
 )
 
 plot_ir_var_es(
@@ -657,7 +663,8 @@ plot_ir_var_es(
   var_color = "#BCBD22",
   es_color = "#E4E6A1",
   plot_folder = plot_folder,
-  data_type = data_type
+  data_type = data_type, 
+  legend.position = "right"
 )
 
 plot_ir_var_es(
@@ -669,7 +676,8 @@ plot_ir_var_es(
   var_color = "#7F7F7F",
   es_color = "lightgrey",
   plot_folder = plot_folder,
-  data_type = data_type
+  data_type = data_type, 
+  legend.position = "right"
 )
 
 # Portfolio Performance ---------------------------------------------------
